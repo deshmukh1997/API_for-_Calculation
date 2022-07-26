@@ -1,0 +1,84 @@
+import math
+
+from flask import Flask, request,jsonify
+
+app = Flask(__name__)
+
+
+@app.route('/',methods=['GET','POST'])
+def addition():
+    if request.method == 'GET':
+        return jsonify({'response':{'Number_1':'2','Number_2':'3'}})
+    elif request.method == 'POST':
+        Number_1 = request.json['Number_1']
+        Number_2 = request.json['Number_2']
+        result = int(Number_1) + int(Number_2)
+        return jsonify({'response': 'Addition of ' +str(Number_1)+ ' and ' +str(Number_2)+ ' is ' +str(result)})
+
+@app.route('/subtraction',methods=['GET','POST'])
+def subtraction():
+    if request.method == 'GET':
+        return jsonify({'response':{'Number_1':'2','Number_2':'3'}})
+    elif request.method == 'POST':
+        Number_1 = request.json['Number_1']
+        Number_2 = request.json['Number_2']
+        result = int(Number_1) - int(Number_2)
+        return jsonify({'response':'Subtraction of ' +str(Number_1)+ ' and ' +str(Number_2)+ ' is ' +str(result)})
+
+
+@app.route('/multiplication',methods=['GET','POST'])
+def multiplication():
+    if request.method == 'GET':
+        return jsonify({'response':{'Number_1':'2','Number_2':'3'}})
+    elif request.method == 'POST':
+        Number_1 = request.json['Number_1']
+        Number_2 = request.json['Number_2']
+        result = int(Number_1) * int(Number_2)
+        return jsonify({'response':'Multiplication of ' +str(Number_1)+ ' and ' +str(Number_2)+ ' is ' +str(result)})
+
+@app.route('/division',methods=['GET','POST'])
+def division():
+    if request.method == 'GET':
+        return jsonify({'response':{'Number_1':'2','Number_2':'3'}})
+    elif request.method == 'POST':
+        Number_1 = request.json['Number_1']
+        Number_2 = request.json['Number_2']
+        result = int(Number_1) / int(Number_2)
+        return jsonify({'response':'Division of ' +str(Number_1)+ ' and ' +str(Number_2)+ ' is ' +str(result)})
+
+
+@app.route('/exponential',methods=['GET','POST'])
+def exponential():
+    if request.method == 'GET':
+        return jsonify({'response':{'Number_1':'2','Number_2':'3'}})
+    elif request.method == 'POST':
+        Number_1 = request.json['Number_1']
+        Number_2 = request.json['Number_2']
+        result = float(Number_1) ** float(Number_2)
+        return jsonify({'response':'Exponent for ' +str(Number_1)+ ' to the power ' +str(Number_2)+ ' is ' +str(result)})
+
+
+@app.route('/log',methods=['GET','POST'])
+def log():
+    if request.method == 'GET':
+        return jsonify({'response':{'Number_1':'2','Number_2':'3'}})
+    elif request.method == 'POST':
+        Number_1 = request.json['Number_1']
+        Number_2 = request.json['Number_2']
+        result = math.log (float(Number_1),float(Number_2))
+        return jsonify({'response':'Log of '+str(Number_1)+ ' to the base ' +str(Number_2)+ ' is ' +str(result)})
+
+
+@app.route('/root', methods=['POST'])
+def root():
+    if request.method == 'GET':
+        return jsonify({'response':{'Number_1':'5','Number_2':'6'}})
+    elif request.method == 'POST':
+        Number_1 = request.json['Number_1']
+        Number_2 = request.json['Number_2']
+        result = float(Number_1) ** (1/ int(Number_2))
+        return jsonify({'response': ''+str(Number_2)+ ' root of ' +str(Number_1)+ ' is '+str(result)})
+
+
+if __name__ == '__main__':
+    app.run(debug=True, port=9090)
